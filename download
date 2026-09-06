@@ -1,0 +1,22 @@
+# Disable Directory Browsing
+Options -Indexes
+
+# Prevent Clickjacking
+Header set X-Frame-Options "SAMEORIGIN"
+
+# Enable XSS Protection Filter
+Header set X-XSS-Protection "1; mode=block"
+
+# Prevent MIME-Type Sniffing
+Header set X-Content-Type-Options "nosniff"
+
+# Content Security Policy (CSP)
+Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+
+# Referrer Policy
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+# Strict-Transport-Security (HSTS - Requires HTTPS)
+<IfModule mod_headers.c>
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
